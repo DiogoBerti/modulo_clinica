@@ -1,0 +1,84 @@
+<odoo>
+    <data>
+        <record id="prontuario_form_view" model="ir.ui.view">
+            <field name="name">prontuario.prontuario.form</field>
+            <field name="model">prontuario.prontuario</field>
+            <field name="view_type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="paciente_id"/>
+                            <field name="medico_id"/>
+                            <field name="data_nascimento" readonly="1"/>
+                            <field name="idade_paciente" readonly="1"/>
+                        </group>
+                        <separator/>
+                        <group>
+                            <field name="observacoes_medicas"/>
+                            <field name="diagnostico"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="prontuario_tree_view" model="ir.ui.view">
+            <field name="name">prontuario.prontuario.tre</field>
+            <field name="model">prontuario.prontuario</field>
+            <field name="view_type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="paciente_id"/>
+                    <field name="medico_id"/>
+                    <field name="data_nascimento" readonly="1"/>
+                    <field name="diagnostico"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_prontuario_tree_view" model="ir.actions.act_window">
+            <field name="name">Prontuarios</field>
+            <field name="res_model">prontuario.prontuario</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Adicionar Novo prontuario
+                </p>
+                <p>
+                    Prontuario
+                </p>
+            </field>
+        </record>
+        <menuitem id="menu_prontuario_root" name="Prontuarios"/>
+        <menuitem action="action_prontuario_tree_view"
+            id="menu_action_prontuario_tree_view" name="Prontuarios" parent="menu_prontuario_root"/>
+        <!--    VIEW DE PARTNER  -->
+        <record id="res_partner_clinica_form_view" model="ir.ui.view">
+            <field name="name">res.partner.clinica.form.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field eval="20" name="priority"/>
+            <field name="arch" type="xml">
+                <div name="button_box" position="inside">
+                    <button class="oe_stat_button"
+                        icon="fa-calendar-check-o"
+                        name="open_prontuario_action" type="object">
+                        <field name="prontuarios_ids"
+                            string="Prontuarios" widget="statinfo"/>
+                    </button>
+                </div>
+                <xpath expr="//notebook/page[1]" position="before">
+                    <page name="dados_pessoais" string="Dados Pessoais">
+                        <group>
+                            <field name="data_nascimento"/>
+                            <field name="idade" readonly="1"/>
+                            <field name="sexo"/>
+                            <field name="alergias"/>
+                            <field name="obs"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

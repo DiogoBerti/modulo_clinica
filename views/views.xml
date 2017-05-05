@@ -1,0 +1,59 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="clinica_modulo.list">
+      <field name="name">clinica_modulo list</field>
+      <field name="model">clinica_modulo.clinica_modulo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="clinica_modulo.action_window">
+      <field name="name">clinica_modulo window</field>
+      <field name="res_model">clinica_modulo.clinica_modulo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="clinica_modulo.action_server">
+      <field name="name">clinica_modulo server</field>
+      <field name="model_id" ref="model_clinica_modulo_clinica_modulo"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="clinica_modulo" id="clinica_modulo.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="clinica_modulo.menu_1" parent="clinica_modulo.menu_root"/>
+    <menuitem name="Menu 2" id="clinica_modulo.menu_2" parent="clinica_modulo.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="clinica_modulo.menu_1_list" parent="clinica_modulo.menu_1"
+              action="clinica_modulo.action_window"/>
+    <menuitem name="Server to list" id="clinica_modulo" parent="clinica_modulo.menu_2"
+              action="clinica_modulo.action_server"/>
+    -->
+  </data>
+</odoo>
