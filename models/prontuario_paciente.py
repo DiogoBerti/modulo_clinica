@@ -19,7 +19,7 @@ class Prontuario(models.Model):
 class ProntuarioConsulta(models.Model):
     _name = 'prontuario.consulta'
     
-    data_consulta = fields.Datetime('Data da Consulta')
+    data_consulta = fields.Datetime('Data da Consulta', required=True)
     
     tipo_consulta = fields.Selection([('periodico','Periodico'),
                                        ('retorno','Retorno'),
@@ -33,5 +33,8 @@ class ProntuarioConsulta(models.Model):
     local_consulta = fields.Selection([('sede','Sede'),
                                        ('unidade','Unidade')],
                                       'Local da consulta')
+    
+    
+        
     
     

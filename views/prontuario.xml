@@ -52,6 +52,67 @@
         <menuitem id="menu_prontuario_root" name="Prontuarios"/>
         <menuitem action="action_prontuario_tree_view"
             id="menu_action_prontuario_tree_view" name="Prontuarios" parent="menu_prontuario_root"/>
+        <record id="consulta_form_view" model="ir.ui.view">
+            <field name="name">prontuario.consulta.form</field>
+            <field name="model">prontuario.consulta</field>
+            <field name="view_type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="data_consulta"/>
+                            <field name="paciente_id"/>
+                        </group>
+                        <group>
+                            <field name="tipo_consulta"/>
+                            <field name="local_consulta"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="consulta_tree_view" model="ir.ui.view">
+            <field name="name">prontuario.consulta.tree</field>
+            <field name="model">prontuario.consulta</field>
+            <field name="view_type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="paciente_id"/>
+                    <field name="data_consulta"/>
+                    <field name="tipo_consulta"/>
+                    <field name="local_consulta"/>
+                </tree>
+            </field>
+        </record>
+        <record id="consulta_calendar_view" model="ir.ui.view">
+            <field name="name">Consultas</field>
+            <field name="model">prontuario.consulta</field>
+            <field eval="2" name="priority"/>
+            <field name="arch" type="xml">
+                <calendar mode="month"
+                color="paciente_id" date_start="data_consulta" string="Consultas">
+                    <field name="paciente_id"/>
+                    <field name="local_consulta"/>
+                </calendar>
+            </field>
+        </record>
+        <record id="action_consulta_tree_view" model="ir.actions.act_window">
+            <field name="name">Consultas</field>
+            <field name="res_model">prontuario.consulta</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">calendar,tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Adicionar Nova consulta
+                </p>
+                <p>
+                    Consultas
+                </p>
+            </field>
+        </record>
+        <menuitem id="menu_consulta_root" name="Consultas"/>
+        <menuitem action="action_consulta_tree_view"
+            id="menu_action_consulta_tree_view" name="Consultas" parent="menu_consulta_root"/>
         <!--    VIEW DE PARTNER  -->
         <record id="res_partner_clinica_form_view" model="ir.ui.view">
             <field name="name">res.partner.clinica.form.view</field>
@@ -60,18 +121,21 @@
             <field eval="20" name="priority"/>
             <field name="arch" type="xml">
                 <div name="button_box" position="inside">
-                    <button class="oe_stat_button"
-                        icon="fa-calendar-check-o"
+                    <button class="oe_stat_button" icon="fa-book"
                         name="open_prontuario_action" type="object">
-                        <field name="prontuarios_ids"
+                        <field name="count_prontuario"
                             string="Prontuarios" widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button" icon="fa-calendar"
+                        name="open_consulta_action" type="object">
+                        <field name="count_consulta" string="Consultas" widget="statinfo"/>
                     </button>
                 </div>
                 <xpath expr="//notebook/page[1]" position="before">
                     <page name="dados_pessoais" string="Dados Pessoais">
                         <group>
-                            <field name="data_nascimento"/>
-                            <field name="idade" readonly="1"/>
+                            <field colspan="2" name="data_nascimento"/>
+                            <field colspan="2" name="idade" readonly="1"/>
                             <field name="sexo"/>
                             <field name="alergias"/>
                             <field name="obs"/>
